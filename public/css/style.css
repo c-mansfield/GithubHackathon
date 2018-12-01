@@ -1,0 +1,16 @@
+.food-title{
+	background: #9a0606;
+	color: white;
+	padding: 5px;
+}
+.food{
+	margin: 5px;
+}
+.food-content{
+	padding: 5px;
+}
+.food-save-form{
+	padding: 5px;
+	border: 1px solid black;
+	margin-top: 5px;
+}

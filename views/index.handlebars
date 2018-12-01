@@ -1,3 +1,8 @@
+<img src="/logo.png">
+
+<input type="text" id="search-query">
+<button id="search" >Search</button>
+
 <div id="output">
 
 </div>
@@ -5,19 +10,44 @@
 	
 	apiId = '84d3ad05'
 	apiKey = "d9ab1157a71647db8cd73483de102740"
-	url = 'https://api.edamam.com/api/food-database/parser?ingr=chocolate&app_id='+apiId+'&app_key='+apiKey
+	param = 'apple'
+	url = 'https://api.edamam.com/api/food-database/parser?ingr='+param+'&app_id='+apiId+'&app_key='+apiKey
 
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
   		if (this.readyState == 4 && this.status == 200) {
-   			document.getElementById("output").innerHTML = this.responseText;
-   			console.log(this.responseText)
+  			var response = JSON.parse(this.responseText);
+   			console.log(this.responseText);
+   			var toLoad = ""
+   			for(x in response['hints']){
+   				toLoad += '<div class="food"><div class="food-title">' + response['hints'][x]['food']['label'];
+   				if(response['hints'][x]['food']['brand']){
+   					toLoad += " : " + response['hints'][x]['food']['brand']
+   				}
+   				toLoad += '</div><div class="food-content">';
+   				for(y in response['hints'][x]['food']['nutrients']){
+   					toLoad += y + " : " + response['hints'][x]['food']['nutrients'][y] + '<br>'
+   				}
+   				toLoad += '<form class="food-save-form">How much of this did you eat? <input type="text">g <br> When did you eat this food? <input type="datetime-local"> <br> <input type="submit" value="Save meal"></form>'
+
+   				toLoad += "</div></div>";
+   			}
+   			document.getElementById('output').innerHTML = toLoad;
 		}
 	};
 
 	xhttp.open("GET", url , true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send();
+
+	document.getElementById("search").addEventListener("click", function(){
+    	param = encodeURIComponent(document.getElementById("search-query").value.trim())
+		url = 'https://api.edamam.com/api/food-database/parser?ingr='+param+'&app_id='+apiId+'&app_key='+apiKey
+
+		xhttp.open("GET", url , true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	});
 
 </script>

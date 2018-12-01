@@ -33,8 +33,7 @@ app.use(session({
 // Keys
 var keys = require('./keys/secrets')
 
-// Main Page
-app.get('/', (req,res) => {
+app.get('/search', (req,res) => {
 	res.render('index');
 })
 
