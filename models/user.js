@@ -14,7 +14,19 @@ var UserSchema = mongoose.Schema({
 	},
 	email:{
 		type: String
-	}
+	},
+  weight:{
+    type: String
+  },
+  height:{
+    type: String
+  },
+  gender:{
+    type: String
+  },
+  age:{
+    type: String
+  }
 })
 
 //hashing a password before saving it to the database

@@ -27,7 +27,7 @@
    				for(y in response['hints'][x]['food']['nutrients']){
    					toLoad += y + " : " + response['hints'][x]['food']['nutrients'][y] + '<br>'
    				}
-   				toLoad += '<form method="post" action="/save-meal" class="food-save-form">How much of this did you eat? <input type="text" name="quantity">g <br> When did you eat this food? <input type="datetime-local" name="time"> <br>'
+   				toLoad += '<form method="post" action="/save-meal" class="food-save-form">How much of this did you eat? <input type="text" name="quantity">g <br> When did you eat this food? <input type="date" name="time"> <br>'
    				toLoad += "<input type='hidden' value='" + JSON.stringify(response['hints'][x]['food']['nutrients']) + "' name='nutrients'><input type='hidden' value='" + JSON.stringify(response['hints'][x]['food']['label']) + "' name='label'>"
    				toLoad += '<input type="submit" value="Save meal"></form>'
 
@@ -49,5 +49,7 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	});
+
+	
 
 </script>

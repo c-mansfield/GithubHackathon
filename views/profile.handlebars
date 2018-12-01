@@ -1,0 +1,55 @@
+<input type="date" id="search-query">
+<button id="search" >Search Meals on Date</button>
+
+<div id="output">
+
+</div>
+
+<div class="total-cals">
+    Your recomended calorie intake: {{{calorie}}}
+</div>
+
+<script type="text/javascript">
+	
+	
+	var xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+  		if (this.readyState == 4 && this.status == 200) {
+  			var response = JSON.parse(this.responseText);
+        console.log(this.responseText)
+   			var toSend = ""
+        var totalCalories = 0;
+        var totalProtein = 0;
+        for(x in response){
+            toSend += "<div class='food'><div class='food-title'>"+ response[x]["label"] + "</div>"
+            if(JSON.parse(response[x]["nutrients"])["ENERC_KCAL"]){
+              var cals = JSON.parse(response[x]["nutrients"])["ENERC_KCAL"] * response[x]["quantity"] / 100
+              toSend += "Total calories: " + cals;
+              totalCalories = totalCalories + cals;
+              toSend += "<br>"
+            }
+            if(JSON.parse(response[x]["nutrients"])["PROCNT"]){
+              var protein = JSON.parse(response[x]["nutrients"])["PROCNT"] * response[x]["quantity"] / 100
+              toSend += "Total protein: " + protein + "g";
+              totalProtein = totalProtein + protein;
+              toSend += "<br>"
+            }
+            toSend += "</div>"
+        }
+        toSend += '<div class="total-cals"> Total calories for the day: '+ totalCalories +'</div>'
+        toSend += '<div class="total-cals"> Total protein for the day: '+ totalProtein +'g</div>'
+        document.getElementById("output").innerHTML = toSend;
+		}
+	};
+
+	document.getElementById("search").addEventListener("click", function(){
+    	var param = encodeURIComponent(document.getElementById("search-query").value.trim())
+		  var url = 'http://localhost/date-meals?date='+param
+
+  		xhttp.open("GET", url , true);  
+  		xhttp.setRequestHeader("Content-type", "application/json");
+  		xhttp.send();
+	});
+
+</script>

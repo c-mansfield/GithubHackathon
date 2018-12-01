@@ -22,3 +22,7 @@ var MealSchema = mongoose.Schema({
 
 
 var Meal = module.exports = mongoose.model('Meal', MealSchema);
+
+module.exports.findMealsOnDateByUserId = function(userId,date, callback){
+  Meal.find({$and: [{time: date}, {userId: userId}]}, callback)
+}

@@ -14,3 +14,12 @@
 	border: 1px solid black;
 	margin-top: 5px;
 }
+.total-cals{
+	background: #9a0606;
+	font-style: bold;
+	margin: 5px;
+	color: white;
+	margin-top: 15px;
+	font-size: 18px;
+	padding: 10px;
+}
