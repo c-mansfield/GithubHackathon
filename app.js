@@ -9,7 +9,7 @@ var path = require("path")
 // Express Handlebars
 var exphbs = require("express-handlebars");
 app.set('views', path.join(__dirname, 'views'))
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
 
 // MongoDB & Mongoose
@@ -35,7 +35,7 @@ var keys = require('./keys/secrets')
 
 // Main Page
 app.get('/', (req,res) => {
-	res.send(keys.cookieSecret);
+	res.render('index');
 })
 
 // Set static folder
