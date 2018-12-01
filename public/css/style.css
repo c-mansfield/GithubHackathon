@@ -23,3 +23,77 @@
 	font-size: 18px;
 	padding: 10px;
 }
+
+a{
+	all: unset;
+	color: #9a0606;
+	text-decoration: underline;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+a:hover {
+
+	color: red;
+}
+
+.search-box {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #2f3640;
+	height: 40px;
+	border-radius: 40px;
+	padding: 10px;
+	margin-left: 100px;
+	transition: 0.5s;
+}
+
+.search-box:hover>.search-txt {
+	width: 240px;
+	padding: 0 6px;
+}
+
+.search-box:hover>.search-btn {
+	background: #2f3640;
+}
+
+.search-box:hover {
+	background-color: white;
+	border: solid 4px;
+	border-color: #2f3640;
+}
+
+.search-btn {
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.4s;
+	color: white;
+	cursor: pointer;
+}
+
+.search-btn>i {
+	font-size: 30px;
+}
+
+
+.search-txt {
+	border: none;
+	background: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: #2f3640;
+	font-size: 12px;
+	transition: 0.4s;
+	line-height: 40px;
+	width: 0px;
+	font-weight: bold;
+}
