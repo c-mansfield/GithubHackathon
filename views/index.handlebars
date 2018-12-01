@@ -1,15 +1,23 @@
+<div id="output">
+
+</div>
 <script type="text/javascript">
+	
 	apiId = '84d3ad05'
 	apiKey = "d9ab1157a71647db8cd73483de102740"
+	url = 'https://api.edamam.com/api/food-database/parser?ingr=chocolate&app_id='+apiId+'&app_key='+apiKey
 
-	const Http = new XMLHttpRequest();
-	const url = 'https://api.edamam.com/api/food-database/parser?upc=756778354257&app_id='+apiId+'&app_key='+apiKey
-	Http.open("GET", url);
-	Http.send();
+	var xhttp = new XMLHttpRequest();
 
-	Http.onreadystatechange = function(){
-		if(this.readyState == 4 && this.status == 200){
-			console.log(Http.responseText)
+	xhttp.onreadystatechange = function() {
+  		if (this.readyState == 4 && this.status == 200) {
+   			document.getElementById("output").innerHTML = this.responseText;
+   			console.log(this.responseText)
 		}
-	}
+	};
+
+	xhttp.open("GET", url , true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send();
+
 </script>
